@@ -4,6 +4,7 @@ import by.itacademy.dao.ClientDaoImpl;
 import by.itacademy.enteties.Client;
 import by.itacademy.exceptions.ServiceLayerException;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ClientServiceImpl implements IClientService {
@@ -51,4 +52,8 @@ public class ClientServiceImpl implements IClientService {
         return clientDao.updateClient(client);
     }
 
+    @Override
+    public List<Client> getAllClients(){
+        return clientDao.getAllClients();
+    }
 }

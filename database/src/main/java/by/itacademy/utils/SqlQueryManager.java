@@ -5,13 +5,10 @@ import by.itacademy.exceptions.ScriptNotFoundException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Scanner;
 import java.util.stream.Stream;
 
 import static by.itacademy.utils.DatabaseProperties.DATABASE_SCRIPTS_PATH;
@@ -34,7 +31,7 @@ public final class SqlQueryManager {
     }
 
     private static Path resolvePath(final String scriptName){
-        final Path scriptPath;
+        Path scriptPath ;
         try(Stream<Path> paths = Files.walk(Paths.get(DATABASE_SCRIPTS_PATH),Integer.MAX_VALUE)) {
             scriptPath = paths.filter(path -> path.getFileName().toString().equals(scriptName) && Files.isRegularFile(path))
                     .findFirst()

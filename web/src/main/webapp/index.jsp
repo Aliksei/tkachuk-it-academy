@@ -10,8 +10,10 @@
 <head>
     <title>dfsdfsd</title>
     <div>
-        <p>fdsfhdskhfsdf</p>
+        <p>In this app you can make actions with database</p>
+
     </div>
+    <a href="/databaseInterface"> Lets get started</a>
 </head>
 <body>
 
