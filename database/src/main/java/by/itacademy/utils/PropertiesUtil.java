@@ -20,7 +20,7 @@ public final class PropertiesUtil {
     private static void loadProperties() {
         try {
             properties = new Properties();
-            properties.load(Files.newBufferedReader(Paths.get("C:\\Users\\Aliksei\\IdeaProjects\\jd2-project\\database\\src\\main\\resources\\app.properties")));
+            properties.load(Files.newBufferedReader(Paths.get("C:\\Users\\Aliksei\\IdeaProjects\\jd2-project\\database\\src\\main\\resources\\database.properties")));
         } catch (IOException e) {
             e.printStackTrace();
         }
