@@ -5,6 +5,8 @@ import by.itacademy.connector.PostgresConnector;
 import by.itacademy.enteties.Client;
 import by.itacademy.exceptions.DaoLayerException;
 import by.itacademy.utils.SqlQueryPrinter;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ClientDaoImpl implements ClientDao {
+
+    private static final ClientDaoImpl INSTANCE = new ClientDaoImpl();
 
     private static final String GET_CLIENT_BY_ID = "getClient.sql";
     private static final String CREATE_CLIENT = "createClient.sql";
@@ -140,5 +145,9 @@ public class ClientDaoImpl implements ClientDao {
         }catch (SQLException e){
             throw new DaoLayerException(e.getMessage(),e.getCause());
         }
+    }
+
+    public static ClientDaoImpl getInstance(){
+        return INSTANCE;
     }
 }

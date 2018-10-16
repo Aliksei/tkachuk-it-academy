@@ -12,11 +12,11 @@ import java.io.IOException;
 @WebServlet("/databaseInterface")
 public class DataBaseServlet extends HttpServlet {
 
-    private ClientServiceImpl clientService = new ClientServiceImpl();
+    private final ClientServiceImpl clientService = ClientServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("clients", clientService.getAllClients());
-        getServletContext().getRequestDispatcher("/WEB-INF/jsp/databaseInterface.jsp").forward(req,resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/jsp/databaseInterface.jsp").forward(req, resp);
     }
 }

@@ -3,13 +3,18 @@ package by.itacademy.services;
 import by.itacademy.dao.ClientDaoImpl;
 import by.itacademy.enteties.Client;
 import by.itacademy.exceptions.ServiceLayerException;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Optional;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ClientServiceImpl implements IClientService {
 
-    private final ClientDaoImpl clientDao = new ClientDaoImpl();
+    private static final ClientServiceImpl INSTANCE = new ClientServiceImpl();
+
+    private final ClientDaoImpl clientDao = ClientDaoImpl.getInstance();
 
     @Override
     public Integer createClient(final String firstName, final String secondName, final Integer age){
@@ -55,5 +60,9 @@ public class ClientServiceImpl implements IClientService {
     @Override
     public List<Client> getAllClients(){
         return clientDao.getAllClients();
+    }
+
+    public static ClientServiceImpl getInstance(){
+        return INSTANCE;
     }
 }

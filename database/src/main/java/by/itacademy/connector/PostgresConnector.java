@@ -31,11 +31,6 @@ public final class PostgresConnector {
         }
     }
 
-    public static void main(String[] args) {
-
-    }
-
-
     public static Connection getDefaultConnection(){
         return getConnection(DATABASE_BASE_URL, BASE_USER, BASE_USER_PASSWORD);
     }

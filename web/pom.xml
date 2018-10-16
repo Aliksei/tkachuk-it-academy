@@ -33,30 +33,25 @@
 
     <build>
         <finalName>ROOT</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.1</version>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
-                        <id>unpack</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
+                        <id>validate</id>
+                        <phase>validate</phase>
                         <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>by.itacademy.tkachuk</groupId>
-                                    <artifactId>database</artifactId>
-                                    <version>1.0-SNAPSHOT</version>
-                                </artifactItem>
-                            </artifactItems>
-                            <includes>**/*.sql,**/*.properties</includes>
-                            <excludes>META-INF/</excludes>
-                            <outputDirectory>${project.build.directory}/conf</outputDirectory>
+                            <configLocation>checkstyle.xml</configLocation>
+                            <encoding>UTF-8</encoding>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>true</failsOnError>
                         </configuration>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
