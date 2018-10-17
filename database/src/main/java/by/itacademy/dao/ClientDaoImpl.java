@@ -1,7 +1,7 @@
 package by.itacademy.dao;
 
 import by.itacademy.utils.SqlQueryManager;
-import by.itacademy.connector.PostgresConnector;
+import by.itacademy.connector.PostgresPoolManager;
 import by.itacademy.enteties.Client;
 import by.itacademy.exceptions.DaoLayerException;
 import by.itacademy.utils.SqlQueryPrinter;
@@ -30,7 +30,7 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public synchronized Integer createClient(Client client) {
         Integer id = null;
-        Connection connection = PostgresConnector.getDefaultConnection();
+        Connection connection = PostgresPoolManager.getConnection();
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(SqlQueryManager.getSqlQuery(CREATE_CLIENT), 1)) {
             LOGGER.info("Creating new client with params : " + client);
@@ -55,7 +55,7 @@ public class ClientDaoImpl implements ClientDao {
     public synchronized Optional<Client> getClientById(Integer id) {
         Client client = null;
 
-        Connection connection = PostgresConnector.getDefaultConnection();
+        Connection connection = PostgresPoolManager.getConnection();
         String getClientQuery = SqlQueryManager.getSqlQuery(GET_CLIENT_BY_ID);
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(getClientQuery)) {
@@ -82,7 +82,7 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public synchronized boolean deleteClient(Integer id) {
         boolean result;
-        Connection connection = PostgresConnector.getDefaultConnection();
+        Connection connection = PostgresPoolManager.getConnection();
         String deleteQuery = SqlQueryManager.getSqlQuery(DELETE_CLIENT);
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
@@ -100,7 +100,7 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public synchronized boolean updateClient(Client client) {
         boolean result;
-        Connection connection = PostgresConnector.getDefaultConnection();
+        Connection connection = PostgresPoolManager.getConnection();
         String updateQuery = SqlQueryManager.getSqlQuery(UPDATE_CLIENT);
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)){
@@ -122,7 +122,7 @@ public class ClientDaoImpl implements ClientDao {
     public synchronized List<Client> getAllClients(){
         List<Client> clients = new ArrayList<>();
 
-        Connection connection = PostgresConnector.getDefaultConnection();
+        Connection connection = PostgresPoolManager.getConnection();
         String getClients = SqlQueryManager.getSqlQuery(GET_ALL_CLIENTS);
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(getClients)) {

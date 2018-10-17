@@ -1,9 +1,8 @@
 package by.itacademy.utils;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@UtilityClass
 public final class DatabaseProperties {
 
     public static final String BASE_USER = PropertiesUtil.getProperty("database.user");
